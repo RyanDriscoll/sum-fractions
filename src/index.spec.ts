@@ -12,6 +12,11 @@ describe('handleEquations', () => {
     expect(result).toEqual(['7/6', '1/5']);
   });
 
+  it('adds fractions greater than one', () => {
+    const result = handleEquations(['7/2+4/3']);
+    expect(result).toEqual(['29/6']);
+  });
+
   it('can add negative numbers for subtraction', () => {
     const result = handleEquations(['1/2+-2/3', '-1/10+5/50']);
     expect(result).toEqual(['-1/6', '0/500']);
