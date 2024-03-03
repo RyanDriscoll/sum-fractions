@@ -37,6 +37,9 @@ export function reduceFraction(fraction: Fraction): Fraction {
     Math.abs(fraction.numerator) < Math.abs(fraction.denominator)
       ? Math.abs(fraction.numerator)
       : Math.abs(fraction.denominator);
+  if (smaller === 0) {
+    return fraction;
+  }
   let divisor = smaller;
   for (; divisor > 0; divisor--) {
     if (fraction.numerator % divisor === 0 && fraction.denominator % divisor === 0) {
