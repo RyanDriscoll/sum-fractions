@@ -26,3 +26,18 @@ export function addFractionObjects(fractions: Fraction[]): Fraction {
     denominator,
   };
 }
+
+export function reduceFraction(fraction: Fraction): Fraction {
+  const smaller =
+    fraction.numerator < fraction.denominator ? fraction.numerator : fraction.denominator;
+  let divisor = smaller;
+  for (; divisor > 0; divisor--) {
+    if (fraction.numerator % divisor === 0 && fraction.denominator % divisor === 0) {
+      break;
+    }
+  }
+  return {
+    numerator: fraction.numerator / divisor,
+    denominator: fraction.denominator / divisor,
+  };
+}
