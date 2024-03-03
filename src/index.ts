@@ -42,7 +42,7 @@ export function reduceFraction(fraction: Fraction): Fraction {
   }
   let divisor = smaller;
   for (; divisor > 0; divisor--) {
-    if (fraction.numerator % divisor === 0 && fraction.denominator % divisor === 0) {
+    if (Object.values(fraction).every((val) => val % divisor === 0)) {
       break;
     }
   }
