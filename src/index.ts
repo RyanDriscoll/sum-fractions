@@ -1,4 +1,4 @@
-import { Fraction } from './types.js';
+import { Fraction } from './types.ts';
 
 export function handleEquations(equations: string[]): string[] {
   return equations.map((equation) => {
