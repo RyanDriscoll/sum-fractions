@@ -1,14 +1,15 @@
 import {
   addFractionObjects,
-  addFractions,
+  handleEquations,
   parseEquation,
   reduceFraction,
+  stringifyFraction,
 } from './index.ts';
 
-describe('adding fractions', () => {
+describe('handleEquations', () => {
   it('adds fractions', () => {
-    const result = addFractions(['1/2+2/3', '1/10+5/50']);
-    expect(result).toEqual(['7/6', '2/10']);
+    const result = handleEquations(['1/2+2/3', '1/10+5/50']);
+    expect(result).toEqual(['7/6', '1/5']);
   });
 });
 
@@ -45,7 +46,7 @@ describe('addFractionObjects', () => {
 });
 
 describe('reduceFraction', () => {
-  it.only.each([
+  it.each([
     [
       { numerator: 15, denominator: 50 },
       { numerator: 3, denominator: 10 },
@@ -56,5 +57,12 @@ describe('reduceFraction', () => {
     ],
   ])('reduces the fraction object', (fraction, expected) => {
     expect(reduceFraction(fraction)).toEqual(expected);
+  });
+});
+
+describe('stringifyFraction', () => {
+  it('returns a string representation of a fraction', () => {
+    const result = stringifyFraction({ numerator: 1, denominator: 2 });
+    expect(result).toBe('1/2');
   });
 });

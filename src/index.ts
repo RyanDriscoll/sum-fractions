@@ -1,7 +1,12 @@
 import { Fraction } from './types.js';
 
-export function addFractions(fractions: string[]): string[] {
-  return [];
+export function handleEquations(equations: string[]): string[] {
+  return equations.map((equation) => {
+    const fractions = parseEquation(equation);
+    const fractionSum = addFractionObjects(fractions);
+    const reducedFraction = reduceFraction(fractionSum);
+    return stringifyFraction(reducedFraction);
+  });
 }
 
 export function parseEquation(equation: string): Fraction[] {
@@ -40,4 +45,8 @@ export function reduceFraction(fraction: Fraction): Fraction {
     numerator: fraction.numerator / divisor,
     denominator: fraction.denominator / divisor,
   };
+}
+
+export function stringifyFraction(fraction: Fraction): string {
+  return `${fraction.numerator}/${fraction.denominator}`;
 }
