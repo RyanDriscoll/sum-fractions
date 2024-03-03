@@ -11,6 +11,7 @@ describe('handleEquations', () => {
     const result = handleEquations(['1/2+2/3', '1/10+5/50']);
     expect(result).toEqual(['7/6', '1/5']);
   });
+
   it('can add negative numbers for subtraction', () => {
     const result = handleEquations(['1/2+-2/3', '-1/10+5/50']);
     expect(result).toEqual(['-1/6', '0/500']);
