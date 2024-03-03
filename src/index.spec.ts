@@ -47,6 +47,18 @@ describe('addFractionObjects', () => {
       denominator: 50,
     });
   });
+
+  it('handles more than two fraction objects', () => {
+    const result = addFractionObjects([
+      { numerator: 1, denominator: 5 },
+      { numerator: 1, denominator: 10 },
+      { numerator: 3, denominator: 25 },
+    ]);
+    expect(result).toEqual({
+      numerator: 525,
+      denominator: 1250,
+    });
+  });
 });
 
 describe('reduceFraction', () => {
@@ -62,6 +74,13 @@ describe('reduceFraction', () => {
     [
       { numerator: 0, denominator: 1000 },
       { numerator: 0, denominator: 1000 },
+    ],
+    [
+      {
+        numerator: 525,
+        denominator: 1250,
+      },
+      { numerator: 21, denominator: 50 },
     ],
   ])('reduces the fraction object', (fraction, expected) => {
     expect(reduceFraction(fraction)).toEqual(expected);
