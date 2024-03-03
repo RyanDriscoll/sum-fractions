@@ -1,4 +1,4 @@
-import { addFractions, parseEquation } from './index.ts';
+import { addFractionObjects, addFractions, parseEquation } from './index.ts';
 
 describe('adding fractions', () => {
   it('adds fractions', () => {
@@ -23,5 +23,18 @@ describe('parseEquation', () => {
       { numerator: 2, denominator: 3 },
       { numerator: 9, denominator: 10 },
     ]);
+  });
+});
+
+describe('addFractionObjects', () => {
+  it('adds fraction objects together', () => {
+    const result = addFractionObjects([
+      { numerator: 1, denominator: 5 },
+      { numerator: 1, denominator: 10 },
+    ]);
+    expect(result).toEqual({
+      numerator: 15,
+      denominator: 50,
+    });
   });
 });

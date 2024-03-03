@@ -14,3 +14,15 @@ export function parseEquation(equation: string): Fraction[] {
     };
   });
 }
+
+export function addFractionObjects(fractions: Fraction[]): Fraction {
+  const denominator = fractions.reduce((acc, curr) => acc * curr.denominator, 1);
+  const numerator = fractions.reduce((acc, curr) => {
+    const multiplier = denominator / curr.denominator;
+    return acc + multiplier * curr.numerator;
+  }, 0);
+  return {
+    numerator,
+    denominator,
+  };
+}
