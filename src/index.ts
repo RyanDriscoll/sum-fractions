@@ -72,8 +72,8 @@ export function reduceFraction(fraction: Fraction): Fraction {
       ? Math.abs(fraction.numerator)
       : Math.abs(fraction.denominator);
 
-  // if the value is zero it cannot be reduced further. return the original fraction
-  if (smaller === 0) {
+  // if the value is zero or one it cannot be reduced further. return the original fraction
+  if (smaller <= 1) {
     return fraction;
   }
 
