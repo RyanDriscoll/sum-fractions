@@ -49,8 +49,8 @@ export function addFractionObjects(fractions: Fraction[]): Fraction {
   const numerator = fractions.reduce((acc, curr) => {
     // get multiplier by dividing our common denominator by the fraction's denominator
     const multiplier = denominator / curr.denominator;
-    // multiply the numerator by the same value and add it to the other numerators
-    return acc + multiplier * curr.numerator;
+    // multiply the numerator by the multiplier and add it to the accumulated value
+    return multiplier * curr.numerator + acc;
   }, 0);
   return {
     numerator,
