@@ -45,13 +45,14 @@ export function parseEquation(equation: string): Fraction[] {
  */
 export function addFractionObjects(fractions: Fraction[]): Fraction {
   // multiplying all denominators creates a common denominator
-  const denominator = fractions.reduce((acc, curr) => acc * curr.denominator, 1);
-  const numerator = fractions.reduce((acc, curr) => {
+  const denominator = fractions.reduce((den, fraction) => den * fraction.denominator, 1);
+  const numerator = fractions.reduce((num, fraction) => {
     // get multiplier by dividing our common denominator by the fraction's denominator
-    const multiplier = denominator / curr.denominator;
+    const multiplier = denominator / fraction.denominator;
     // multiply the numerator by the multiplier and add it to the accumulated value
-    return multiplier * curr.numerator + acc;
+    return multiplier * fraction.numerator + num;
   }, 0);
+
   return {
     numerator,
     denominator,
@@ -61,16 +62,15 @@ export function addFractionObjects(fractions: Fraction[]): Fraction {
 /**
  * reduceFraction
  *
- * takes a Fraction object and returns a new Fraction recuced as much as possible
+ * takes a Fraction object and returns a new Fraction reduced as much as possible
  * @param fraction Fraction
  * @returns Fraction
  */
 export function reduceFraction(fraction: Fraction): Fraction {
+  const num = Math.abs(fraction.numerator);
+  const den = Math.abs(fraction.denominator);
   // get the smaller absolute value (distance from zero) between numerator and denominator
-  const smaller =
-    Math.abs(fraction.numerator) < Math.abs(fraction.denominator)
-      ? Math.abs(fraction.numerator)
-      : Math.abs(fraction.denominator);
+  const smaller = num < den ? num : den;
 
   // if the value is zero or one it cannot be reduced further. return the original fraction
   if (smaller <= 1) {
@@ -79,7 +79,7 @@ export function reduceFraction(fraction: Fraction): Fraction {
 
   let divisor = smaller;
   for (; divisor > 0; divisor--) {
-    // find a divisor that both the numerator and denominator can be evenly divided by
+    // find a divisor where both the numerator and denominator can be evenly divided
     if (Object.values(fraction).every((val) => val % divisor === 0)) {
       break;
     }
