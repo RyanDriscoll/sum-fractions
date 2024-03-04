@@ -88,7 +88,7 @@ describe('reduceFraction', () => {
       },
       { numerator: 21, denominator: 50 },
     ],
-  ])('reduces the fraction object', (fraction, expected) => {
+  ])('reduces the fraction object: %o => %o', (fraction, expected) => {
     expect(reduceFraction(fraction)).toEqual(expected);
   });
 });
